@@ -1,0 +1,26 @@
+{
+  "name": "dashboard-home",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sw.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jomarcosgom/dashboard-home.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jomarcosgom/dashboard-home/issues"
+  },
+  "homepage": "https://github.com/jomarcosgom/dashboard-home#readme",
+  "dependencies": {
+    "meross-cloud": "^3.1.2",
+    "tuyapi": "^7.7.1"
+  }
+}

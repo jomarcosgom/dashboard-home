@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>SmartHome Dashboard — Control Domótico</title>
+  <meta name="description" content="Dashboard domótico premium para control de dispositivos del hogar: luces, clima, seguridad y más.">
+  <meta name="theme-color" content="#0a0e17">
+  
+  <!-- PWA & Mobile Web App Meta -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mi Hogar">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="SmartHome">
+  
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/icon.svg">
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/layouts.css">
+  <link rel="stylesheet" href="./css/animations.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="topbar__greeting" id="topbar-time">--:-- · Cargando...</div>
+        <h1 class="topbar__title text-gradient">Mi Hogar</h1>
+      </div>
+      <div class="topbar__right">
+        <a href="#/settings" class="topbar__avatar" id="topbar-avatar" title="Perfil y Ajustes">JM</a>
+      </div>
+    </header>
+
+    <!-- Main Content Area (SPA Page Target) -->
+    <main class="app__content" id="page-content" role="main" aria-live="polite">
+      <!-- Dynamic pages rendered here -->
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" id="bottom-nav" aria-label="Navegación principal">
+      <!-- Rendered dynamically by app.js -->
+    </nav>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" aria-live="polite"></div>
+  </div>
+
+  <!-- Main JavaScript Application -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

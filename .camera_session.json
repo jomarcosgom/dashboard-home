@@ -1,0 +1,14 @@
+{
+  "connected": true,
+  "brand": "TP-Link Tapo",
+  "model": "Tapo C230",
+  "ip": "192.168.1.131",
+  "username": "adminjj",
+  "password": "12345678",
+  "port": 554,
+  "stream": "stream2",
+  "hdStream": "stream1",
+  "online": true,
+  "lastActivity": "En espera",
+  "on": false
+}

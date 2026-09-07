@@ -1,0 +1,536 @@
+/* ============================================================
+   LAYOUT STYLES — SmartHome Dashboard
+   App shell, navigation, page grids
+   ============================================================ */
+
+/* ── App Shell ── */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.app__content {
+  flex: 1;
+  padding: var(--space-md);
+  padding-bottom: calc(var(--nav-height-mobile) + env(safe-area-inset-bottom, 0px) + var(--space-2xl));
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Top Bar ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: max(var(--space-md), calc(env(safe-area-inset-top, 0px) + 10px));
+  padding-bottom: var(--space-md);
+  padding-left: max(var(--space-md), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--space-md), env(safe-area-inset-right, 0px));
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: rgba(10, 14, 23, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.topbar__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar__greeting {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.topbar__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.topbar__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ── Bottom Navigation ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--nav-height-mobile) + env(safe-area-inset-bottom, 0px));
+  background: rgba(10, 14, 23, 0.94);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding-top: 6px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: max(var(--space-xs), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--space-xs), env(safe-area-inset-right, 0px));
+  z-index: var(--z-nav);
+}
+
+.bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-lg);
+  min-width: 56px;
+  color: var(--text-tertiary);
+  transition: all var(--transition-base);
+  position: relative;
+  text-decoration: none;
+}
+
+.bottom-nav__item svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.8;
+  transition: all var(--transition-base);
+}
+
+.bottom-nav__item span {
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+}
+
+.bottom-nav__item:hover {
+  color: var(--text-secondary);
+}
+
+.bottom-nav__item--active {
+  color: var(--accent-orange);
+}
+
+.bottom-nav__item--active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--accent-orange);
+  border-radius: 0 0 var(--radius-full) var(--radius-full);
+}
+
+/* ── Page Grid ── */
+.page-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+/* Dashboard stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xs);
+}
+
+/* Room cards */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+/* Device cards */
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+/* Scenes row */
+.scenes-row {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+  padding-right: var(--space-md);
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scenes-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Rooms filter */
+.rooms-filter {
+  display: flex;
+  gap: var(--space-xs);
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.rooms-filter::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Scene Card ── */
+.scene-card {
+  flex-shrink: 0;
+  min-width: 104px;
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.scene-card__icon {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-xs);
+}
+
+.scene-card__name {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ── Room Card (Dashboard) ── */
+.room-card {
+  cursor: pointer;
+}
+
+.room-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.room-card__name {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+
+.room-card__count {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.room-card__devices {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.room-card__device-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  background: rgba(255,255,255,0.06);
+  color: var(--text-secondary);
+}
+
+.room-card__device-chip--on {
+  background: var(--accent-green-glow);
+  color: var(--accent-green);
+}
+
+/* ── Climate Page ── */
+.climate-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.climate-controls {
+  display: flex;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.climate-controls .glass-card {
+  flex: 1;
+}
+
+/* ── Security Page ── */
+.security-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.camera-preview {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.camera-preview__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-md);
+}
+
+.camera-preview__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-xs);
+}
+
+/* ── Event Log ── */
+.event-log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.event-log__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  transition: background var(--transition-fast);
+}
+
+.event-log__item:hover {
+  background: var(--glass-bg-strong);
+}
+
+.event-log__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.event-log__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-log__title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.event-log__time {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+/* ── Settings ── */
+.settings-group {
+  margin-bottom: var(--space-lg);
+}
+
+.settings-group__title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-xs);
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  margin-bottom: var(--space-xs);
+  transition: background var(--transition-fast);
+}
+
+.settings-item:hover {
+  background: var(--glass-bg-strong);
+}
+
+.settings-item__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.settings-item__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-bg-strong);
+}
+
+.settings-item__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-secondary);
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.settings-item__label {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+}
+
+.settings-item__desc {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  margin-top: 1px;
+}
+
+.settings-item__value {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* ── Responsive: Tablet+ ── */
+@media (min-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .rooms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .devices-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .security-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Responsive: Desktop ── */
+@media (min-width: 1024px) {
+  .app__content {
+    padding-bottom: var(--space-xl);
+  }
+
+  .bottom-nav {
+    top: 0;
+    bottom: auto;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100dvh;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--space-xl) var(--space-md);
+    gap: var(--space-xs);
+    border-top: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .bottom-nav__item {
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-sm);
+    min-width: unset;
+  }
+
+  .bottom-nav__item--active::before {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: 0 var(--radius-full) var(--radius-full) 0;
+  }
+
+  .bottom-nav__item span {
+    font-size: var(--font-size-sm);
+  }
+
+  .app__content {
+    margin-left: var(--sidebar-width);
+    padding: var(--space-lg);
+    padding-bottom: var(--space-xl);
+  }
+
+  .topbar {
+    margin-left: var(--sidebar-width);
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .rooms-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .devices-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .climate-controls {
+    flex-direction: row;
+  }
+}
+
+/* ── Page Transition ── */
+.page-enter {
+  animation: pageEnter 0.35s ease-out forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

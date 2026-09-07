@@ -1,0 +1,249 @@
+/* ============================================================
+   ANIMATIONS — SmartHome Dashboard
+   Micro-animations, transitions, keyframes
+   ============================================================ */
+
+/* ── Fade In / Up ── */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered children */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* ── Breathing Glow ── */
+.glow-breathe {
+  animation: glowBreathe 3s ease-in-out infinite;
+}
+
+@keyframes glowBreathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 107, 53, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.4); }
+}
+
+.glow-breathe--blue {
+  animation: glowBreatheBlue 3s ease-in-out infinite;
+}
+
+@keyframes glowBreatheBlue {
+  0%, 100% { box-shadow: 0 0 8px rgba(79, 195, 247, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(79, 195, 247, 0.4); }
+}
+
+.glow-breathe--green {
+  animation: glowBreatheGreen 3s ease-in-out infinite;
+}
+
+@keyframes glowBreatheGreen {
+  0%, 100% { box-shadow: 0 0 8px rgba(102, 187, 106, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(102, 187, 106, 0.4); }
+}
+
+/* ── Spin ── */
+.spin {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+/* ── AC Blow / Wind Effect ── */
+.wind-effect {
+  position: relative;
+}
+
+.wind-effect::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 20%;
+  right: 20%;
+  height: 12px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    rgba(79, 195, 247, 0.3) 4px,
+    transparent 8px
+  );
+  border-radius: var(--radius-full);
+  animation: windBlow 1.5s ease-in-out infinite;
+  opacity: 0;
+}
+
+.wind-effect--active::after {
+  opacity: 1;
+}
+
+@keyframes windBlow {
+  0% { transform: scaleX(0.8) translateY(0); opacity: 0.4; }
+  50% { transform: scaleX(1.1) translateY(4px); opacity: 0.8; }
+  100% { transform: scaleX(0.8) translateY(8px); opacity: 0; }
+}
+
+/* ── Temperature Pulse ── */
+.temp-pulse {
+  animation: tempPulse 2s ease-in-out infinite;
+}
+
+@keyframes tempPulse {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50% { text-shadow: 0 0 20px var(--accent-orange-glow); }
+}
+
+.temp-pulse--cool {
+  animation: tempPulseCool 2s ease-in-out infinite;
+}
+
+@keyframes tempPulseCool {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50% { text-shadow: 0 0 20px var(--accent-blue-glow); }
+}
+
+/* ── Light Bulb Glow ── */
+.light-glow {
+  transition: all var(--transition-base);
+}
+
+.light-glow--on {
+  filter: drop-shadow(0 0 8px rgba(255, 213, 79, 0.6));
+}
+
+/* ── Ring Pulse (Doorbell) ── */
+.ring-pulse {
+  animation: ringPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(10deg); }
+  30% { transform: rotate(-8deg); }
+  45% { transform: rotate(5deg); }
+  60% { transform: rotate(-3deg); }
+  75% { transform: rotate(1deg); }
+}
+
+/* ── Scale Pop ── */
+.scale-pop {
+  animation: scalePop 0.3s var(--transition-spring);
+}
+
+@keyframes scalePop {
+  0% { transform: scale(0.9); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ── Number Count Animation ── */
+.count-up {
+  transition: all 0.6s ease-out;
+}
+
+/* ── Ripple Effect ── */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.15) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.8s;
+}
+
+.ripple:active::after {
+  transform: scale(0);
+  opacity: 1;
+  transition: 0s;
+}
+
+/* ── Slide transitions for pages ── */
+.slide-left-enter {
+  animation: slideLeftEnter 0.3s ease-out forwards;
+}
+
+@keyframes slideLeftEnter {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-right-enter {
+  animation: slideRightEnter 0.3s ease-out forwards;
+}
+
+@keyframes slideRightEnter {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Camera scan line ── */
+.camera-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.camera-scan::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+  animation: cameraScan 3s linear infinite;
+}
+
+@keyframes cameraScan {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ── Reduce motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

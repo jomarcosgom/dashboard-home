@@ -1,0 +1,85 @@
+{
+  "connected": true,
+  "isRealTuya": true,
+  "realAccount": "IoT:74ck4j47…",
+  "brand": "Smart Life / IoT Platform",
+  "model": "Smart Security Panel",
+  "mode": "disarmed",
+  "armed": false,
+  "triggered": false,
+  "triggeredSensor": null,
+  "siren": false,
+  "battery": 100,
+  "acPower": true,
+  "lastAction": "Puerta/Ventana Abierta  (03 Zona)(Puerta cocina)",
+  "lastActionTime": "10:34",
+  "pinCode": "2426",
+  "pinRequired": true,
+  "alarmDeviceId": "bf44dea17bc950a254jrfh",
+  "sensors": [
+    {
+      "id": "zone_01",
+      "zone": 1,
+      "name": "Ventana despacho",
+      "type": "window",
+      "status": "closed",
+      "battery": 95,
+      "online": true,
+      "lastActivity": "Configurado"
+    },
+    {
+      "id": "zone_02",
+      "zone": 2,
+      "name": "Puerta salon",
+      "type": "door",
+      "status": "open",
+      "battery": 95,
+      "online": true,
+      "lastActivity": "Abierta ahora"
+    },
+    {
+      "id": "zone_03",
+      "zone": 3,
+      "name": "Puerta entrada",
+      "type": "door",
+      "status": "closed",
+      "battery": 95,
+      "online": true,
+      "lastActivity": "Cerrada"
+    },
+    {
+      "id": "zone_04",
+      "zone": 4,
+      "name": "Puerta cocina",
+      "type": "door",
+      "status": "open",
+      "battery": 95,
+      "online": true,
+      "lastActivity": "Abierto a las 10:34"
+    }
+  ],
+  "config": {
+    "cloudType": "smartlife",
+    "clientId": "",
+    "clientSecret": "",
+    "deviceId": "",
+    "region": "eu"
+  },
+  "tuyaSession": {
+    "email": null,
+    "password": null,
+    "countryCode": "34",
+    "bizType": "smart_life",
+    "host": "px1.tuyaeu.com",
+    "accessToken": null,
+    "refreshToken": null,
+    "expiresAt": 0,
+    "alarmDeviceId": null
+  },
+  "iotSession": {
+    "clientId": "74ck4j47xj7d9dgen3yt",
+    "clientSecret": "c2783a0b6d014e4d8dbd69016751cf67",
+    "region": "eu",
+    "uid": "eu1769091078980awtS2"
+  }
+}
