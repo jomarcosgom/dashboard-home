@@ -5,6 +5,8 @@
   "main": "sw.js",
   "scripts": {
     "start": "node server.js",
+    "deploy": "wrangler pages deploy . --project-name home-dashboard --commit-dirty=true",
+    "tunnel": "wrangler tunnel quick-start http://localhost:8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

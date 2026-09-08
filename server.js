@@ -836,6 +836,37 @@ function mapTuyaDevicesToAlarm(devices) {
 }
 
 async function restoreAlarmSession() {
+  // Check environment variables first (ideal for Render / Cloud deployments)
+  const envClientId = process.env.TUYA_CLIENT_ID;
+  const envClientSecret = process.env.TUYA_CLIENT_SECRET;
+  const envUid = process.env.TUYA_UID;
+  const envRegion = process.env.TUYA_REGION || 'eu';
+
+  if (envClientId && envClientSecret) {
+    console.log(`[TuyaIoT] Configurando Tuya IoT desde variables de entorno (${envClientId.slice(0, 8)}...)...`);
+    iotSession.clientId = envClientId.trim();
+    iotSession.clientSecret = envClientSecret.trim();
+    iotSession.region = envRegion.trim();
+    if (envUid) iotSession.uid = envUid.trim();
+
+    try {
+      await tuyaIotGetToken();
+      if (iotSession.uid) {
+        const devices = await tuyaIotGetDevices(iotSession.uid);
+        mapIotDevicesToAlarm(devices);
+      }
+      await tuyaIotSyncDeviceStatus(true);
+      iotSession.isConnected = true;
+      alarmState.isRealTuya = true;
+      alarmState.connected = true;
+      alarmState.brand = 'Smart Life / IoT Platform';
+      console.log(`[TuyaIoT] ¡Sesión de Tuya IoT Platform iniciada con éxito desde entorno!`);
+      return;
+    } catch (iotErr) {
+      console.warn(`[TuyaIoT] Fallo al autenticar con variables de entorno: ${iotErr.message}`);
+    }
+  }
+
   if (fs.existsSync(ALARM_SESSION_FILE)) {
     try {
       const data = JSON.parse(fs.readFileSync(ALARM_SESSION_FILE, 'utf8'));
@@ -925,6 +956,22 @@ function saveAlarmSession() {
 
 /* ── Try restoring Meross session on start ── */
 function restoreSession() {
+  // Check environment variables first (ideal for Render / Cloud deployments)
+  const envEmail = process.env.MEROSS_EMAIL;
+  const envPassword = process.env.MEROSS_PASSWORD;
+
+  if (envEmail && envPassword) {
+    console.log(`[Meross] Iniciando sesión desde variables de entorno para ${envEmail}...`);
+    initMerossConnection({
+      email: envEmail.trim(),
+      password: envPassword.trim(),
+      localHttpFirst: false
+    }).catch(err => {
+      console.warn('[Meross] Error conectando con credenciales de entorno:', err.message);
+    });
+    return;
+  }
+
   if (fs.existsSync(SESSION_FILE)) {
     try {
       const session = JSON.parse(fs.readFileSync(SESSION_FILE, 'utf8'));

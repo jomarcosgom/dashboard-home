@@ -1,5 +1,11 @@
 node_modules/
 .meross_session.json
+.alarm_session.json
+.camera_session.json
+task.md
+implementation_plan.md
+scratch/
 .env
 .DS_Store
 Thumbs.db
+
